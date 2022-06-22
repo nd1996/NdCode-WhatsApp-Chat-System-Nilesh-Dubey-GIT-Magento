@@ -1,0 +1,246 @@
+<?xml version="1.0" ?>
+<listing xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+	<argument name="data" xsi:type="array">
+		<item name="js_config" xsi:type="array">
+			<item name="provider" xsi:type="string">ndcode_whatsappchatsystem_whatsapp_user_listing.ndcode_whatsappchatsystem_whatsapp_user_listing_data_source</item>
+		</item>
+	</argument>
+	<settings>
+		<spinner>ndcode_whatsappchatsystem_whatsapp_user_columns</spinner>
+		<deps>
+			<dep>ndcode_whatsappchatsystem_whatsapp_user_listing.ndcode_whatsappchatsystem_whatsapp_user_listing_data_source</dep>
+		</deps>
+		<buttons>
+			<button name="add">
+				<url path="*/*/new"/>
+				<class>primary</class>
+				<label translate="true">Add new User</label>
+			</button>
+		</buttons>
+	</settings>
+	<dataSource name="ndcode_whatsappchatsystem_whatsapp_user_listing_data_source" component="Magento_Ui/js/grid/provider">
+		<settings>
+			<storageConfig>
+				<param name="indexField" xsi:type="string">whatsapp_user_id</param>
+			</storageConfig>
+			<updateUrl path="mui/index/render"/>
+		</settings>
+		<aclResource>NdCode_WhatsAppChatSystem::Whatsapp_User</aclResource>
+		<dataProvider name="ndcode_whatsappchatsystem_whatsapp_user_listing_data_source" class="Magento\Framework\View\Element\UiComponent\DataProvider\DataProvider">
+			<settings>
+				<requestFieldName>id</requestFieldName>
+				<primaryFieldName>whatsapp_user_id</primaryFieldName>
+			</settings>
+		</dataProvider>
+	</dataSource>
+	<listingToolbar name="listing_top">
+		<settings>
+			<sticky>false</sticky>
+		</settings>
+		<bookmark name="bookmarks"/>
+		<columnsControls name="columns_controls"/>
+		<filters name="listing_filters"/>
+		<paging name="listing_paging"/>
+	</listingToolbar>
+	<columns name="ndcode_whatsappchatsystem_whatsapp_user_columns">
+		<settings>
+			<editorConfig>
+				<param name="selectProvider" xsi:type="string">ndcode_whatsappchatsystem_whatsapp_user_listing.ndcode_whatsappchatsystem_whatsapp_user_listing.ndcode_whatsappchatsystem_whatsapp_user_columns.ids</param>
+				<param name="enabled" xsi:type="boolean">true</param>
+				<param name="indexField" xsi:type="string">whatsapp_user_id</param>
+				<param name="clientConfig" xsi:type="array">
+					<item name="saveUrl" xsi:type="url" path="ndcode_whatsappchatsystem/WhatsappUser/inlineEdit"/>
+					<item name="validateBeforeSave" xsi:type="boolean">false</item>
+				</param>
+			</editorConfig>
+			<childDefaults>
+				<param name="fieldAction" xsi:type="array">
+					<item name="provider" xsi:type="string">ndcode_whatsappchatsystem_whatsapp_user_listing.ndcode_whatsappchatsystem_whatsapp_user_listing.ndcode_whatsappchatsystem_whatsapp_user_columns_editor</item>
+					<item name="target" xsi:type="string">startEdit</item>
+					<item name="params" xsi:type="array">
+						<item name="0" xsi:type="string">${ $.$data.rowIndex }</item>
+						<item name="1" xsi:type="boolean">true</item>
+					</item>
+				</param>
+			</childDefaults>
+		</settings>
+		<selectionsColumn name="ids">
+			<settings>
+				<indexField>whatsapp_user_id</indexField>
+			</settings>
+		</selectionsColumn>
+		<column name="whatsapp_user_id">
+			<settings>
+				<filter>text</filter>
+				<sorting>asc</sorting>
+				<label translate="true">ID</label>
+			</settings>
+		</column>
+		<column name="enable" component="Magento_Ui/js/grid/columns/select">
+			<settings>
+				<filter>select</filter>
+                <dataType>select</dataType>
+				<label translate="true">Enable</label>
+                <options class="Magento\Config\Model\Config\Source\Yesno"/>
+				<editor>
+					<editorType>select</editorType>
+					<validation>
+						<rule name="required-entry" xsi:type="boolean">true</rule>
+					</validation>
+				</editor>
+			</settings>
+		</column>
+		<column name="name">
+			<settings>
+				<filter>text</filter>
+				<label translate="true">Name</label>
+				<editor>
+					<editorType>text</editorType>
+					<validation>
+						<rule name="required-entry" xsi:type="boolean">true</rule>
+					</validation>
+				</editor>
+			</settings>
+		</column>
+		<!--<column name="description">
+			<settings>
+				<filter>text</filter>
+				<label translate="true">Description</label>
+				<editor>
+					<editorType>text</editorType>
+					<validation>
+						<rule name="required-entry" xsi:type="boolean">true</rule>
+					</validation>
+				</editor>
+			</settings>
+		</column>-->
+		<column name="role">
+			<settings>
+				<filter>text</filter>
+				<label translate="true">Role</label>
+				<editor>
+					<editorType>text</editorType>
+					<validation>
+						<rule name="required-entry" xsi:type="boolean">true</rule>
+					</validation>
+				</editor>
+			</settings>
+		</column>
+		<column name="whatsapp_number">
+			<settings>
+				<filter>text</filter>
+				<label translate="true">WhatsApp No.</label>
+				<editor>
+					<editorType>text</editorType>
+					<validation>
+						<rule name="required-entry" xsi:type="boolean">true</rule>
+					</validation>
+				</editor>
+			</settings>
+		</column>
+		<!--<column name="availability_sunday">
+			<settings>
+				<editor>
+					<editorType>text</editorType>
+					<validation>
+						<rule name="required-entry" xsi:type="boolean">true</rule>
+					</validation>
+				</editor>
+			</settings>
+		</column>
+		<column name="availability_monday">
+			<settings>
+				<editor>
+					<editorType>text</editorType>
+					<validation>
+						<rule name="required-entry" xsi:type="boolean">true</rule>
+					</validation>
+				</editor>
+			</settings>
+		</column>
+		<column name="availability_tuesday">
+			<settings>
+				<editor>
+					<editorType>text</editorType>
+					<validation>
+						<rule name="required-entry" xsi:type="boolean">true</rule>
+					</validation>
+				</editor>
+			</settings>
+		</column>
+		<column name="availability_wednesday">
+			<settings>
+				<editor>
+					<editorType>text</editorType>
+					<validation>
+						<rule name="required-entry" xsi:type="boolean">true</rule>
+					</validation>
+				</editor>
+			</settings>
+		</column>
+		<column name="availability_thursday">
+			<settings>
+				<editor>
+					<editorType>text</editorType>
+					<validation>
+						<rule name="required-entry" xsi:type="boolean">true</rule>
+					</validation>
+				</editor>
+			</settings>
+		</column>
+		<column name="availability_friday">
+			<settings>
+				<editor>
+					<editorType>text</editorType>
+					<validation>
+						<rule name="required-entry" xsi:type="boolean">true</rule>
+					</validation>
+				</editor>
+			</settings>
+		</column>
+		<column name="availability_saturday">
+			<settings>
+				<editor>
+					<editorType>text</editorType>
+					<validation>
+						<rule name="required-entry" xsi:type="boolean">true</rule>
+					</validation>
+				</editor>
+			</settings>
+		</column>-->
+		<!--<column name="avatar">
+			<settings>
+				<filter>text</filter>
+				<label translate="true">avatar</label>
+				<editor>
+					<editorType>text</editorType>
+					<validation>
+						<rule name="required-entry" xsi:type="boolean">false</rule>
+					</validation>
+				</editor>
+			</settings>
+		</column>-->
+        <!--<column name="avatar" class="Magento\Catalog\Ui\Component\Listing\Columns\Thumbnail" component="Magento_Ui/js/grid/columns/thumbnail">
+            <settings>
+                <altField>name</altField>
+                <hasPreview>1</hasPreview>
+&lt;!&ndash;                <addField>true</addField>&ndash;&gt;
+                <label translate="true">Thumbnail</label>
+                <sortable>false</sortable>
+            </settings>
+        </column>-->
+        <column name="avatar" component="Magento_Ui/js/grid/columns/thumbnail" class="NdCode\WhatsAppChatSystem\Ui\Component\Listing\Column\Thumbnail">
+            <settings>
+                <sortable>false</sortable>
+                <label translate="true">Avatar</label>
+            </settings>
+        </column>
+        <actionsColumn name="actions" class="NdCode\WhatsAppChatSystem\Ui\Component\Listing\Column\WhatsappUserActions">
+			<settings>
+				<indexField>whatsapp_user_id</indexField>
+				<resizeEnabled>false</resizeEnabled>
+				<resizeDefaultWidth>107</resizeDefaultWidth>
+			</settings>
+		</actionsColumn>
+	</columns>
+</listing>

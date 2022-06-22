@@ -1,0 +1,138 @@
+<?php
+/**
+ * @var $block \NdCode\WhatsAppChatSystem\Block\Adminhtml\Whatsapp\UiForm\CustomFields
+ */
+?>
+
+<?php
+$formData = $block->getFormData();
+?>
+
+<style>
+    div.nd_code_select_prefix:before {
+        bottom: 0;
+        box-sizing: border-box;
+        content: '';
+        left: 0;
+        position: absolute;
+        top: 0;
+        width: 100%;
+        z-index: -1;
+    }
+</style>
+
+<div class="fieldset-wrapper"
+     data-level="0" data-index="availability">
+    <div class="fieldset-wrapper-title" tabindex="-1">
+
+        <strong class="title">
+            <span><?= __("Availability") ?></span>
+        </strong>
+    </div>
+
+    <div class="admin__fieldset-wrapper-content _hide">
+        <fieldset class="admin__fieldset">
+
+            <?php foreach ($block->getWeekDays() as $weekDay => $weekDayVal):
+                $dateAndTimeObj = $formData->getData($weekDay);
+                if(!empty($dateAndTimeObj)) $dateAndTimeObjArray = explode("-", $dateAndTimeObj);
+                $dateAndTime = ["00", "00"];
+                $timeType = ["Start", "End"];
+                for ($nd = 0; $nd < 2; $nd++):
+                    if (!empty($dateAndTimeObj)) $dateAndTime = explode(":", $dateAndTimeObjArray[$nd]);
+                    ?>
+                    <div class="admin__field _required">
+                        <div class="admin__field-label">
+                            <label for="<?php echo $weekDay; ?>">
+                                <span><?= __($weekDayVal['label'] . " " . $timeType[$nd]) ?></span>
+                            </label>
+                        </div>
+                        <div class="admin__field-control nd__inline__form" id="<?php echo $weekDay; ?>">
+                            <div class="admin__control-addon"
+                                 style="width: calc( (100%) * 0.4 - 30px); padding: 0 0 0 20px;">
+                                <div class="nd_code_select_prefix">
+                                    <select class="admin__control-select <?php echo $weekDay . "_hr"; ?>" id="<?php echo $weekDay . "_hr_" . $nd; ?>" data-timetype="<?= $nd ?>">
+                                        <option value=""><?= __("Select Option"); ?></option>
+                                        <?php for ($i = 0; $i < 24; $i++): ?>
+                                            <?php $hour = sprintf("%02d", $i); ?>
+                                            <option <?php if ($dateAndTime[0] == $hour) {
+                                                echo "selected";
+                                            } ?> value="<?= $hour ?>"><?= $hour ?></option>
+                                        <?php endfor; ?>
+                                    </select>
+                                    <label class="admin__addon-prefix" for="<?php echo $weekDay . "_hr_" . $nd; ?>">
+                                        <span><?= __("Hours") ?></span>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="admin__control-addon" style="width: calc( (100%) * 0.4 - 30px );">
+                                <div class="custom__select_prefix">
+                                    <select class="admin__control-select <?php echo $weekDay . "_min"; ?>" id="<?php echo $weekDay . "_min_" . $nd; ?>" data-timetype="<?= $nd ?>">
+                                        <option value=""><?= __("Select Option"); ?></option>
+                                        <?php for ($j = 0; $j < 60; $j++): ?>
+                                            <?php $min = sprintf("%02d", $j); ?>
+                                            <option <?php if ($dateAndTime[1] == $min) {
+                                                echo "selected";
+                                            } ?> value="<?= $min ?>"><?= $min ?></option>
+                                        <?php endfor; ?>
+                                    </select>
+                                    <label class="admin__addon-prefix" for="<?php echo $weekDay . "_min_" . $nd; ?>">
+                                        <span><?= __("Minutes") ?></span>
+                                    </label>
+                                </div>
+                            </div>
+                            <div style="width: calc( (100%) * 0.2 - 30px );"></div>
+                        </div>
+                    </div>
+                    <?php endfor; ?>
+                    <script>
+                        require(['jquery'], function ($) {
+                            $(".<?php echo $weekDay . "_hr"; ?>").change(function () {
+                                let hiddenField = $("#container").find("input[name='<?php echo $weekDay; ?>']"),
+                                    hiddenVal = hiddenField.val(),
+                                    timeType = $(this).data("timetype");
+                                if (hiddenVal !== '') {
+                                    let hiddenValDashSplit = hiddenVal.split("-"),
+                                        hiddenValSplit = hiddenValDashSplit[timeType].split(":");
+                                    if(timeType == 1) {
+                                        hiddenField.val(hiddenValDashSplit[0] + "-" + $(this).val() + ":" + hiddenValSplit[1]).change();
+                                    }else{
+                                        hiddenField.val($(this).val() + ":" + hiddenValSplit[1] + "-" + hiddenValDashSplit[1]).change();
+                                    }
+                                } else {
+                                    if(timeType == 1){
+                                        hiddenField.val("00:00-" + $(this).val() + ":00").change();
+                                    }else{
+                                        hiddenField.val($(this).val() + ":00-00:00").change();
+                                    }
+                                }
+                            });
+
+                            $(".<?php echo $weekDay . "_min"; ?>").change(function () {
+                                let hiddenField = $("#container").find("input[name='<?php echo $weekDay; ?>']"),
+                                    hiddenVal = hiddenField.val(),
+                                    timeType = $(this).data("timetype");
+                                if (hiddenVal !== '') {
+                                    let hiddenValDashSplit = hiddenVal.split("-"),
+                                        hiddenValSplit = hiddenValDashSplit[timeType].split(":");
+                                    if(timeType == 1) {
+                                        hiddenField.val(hiddenValDashSplit[0] + "-" + hiddenValSplit[0] + ":" + $(this).val()).change();
+                                    }else{
+                                        hiddenField.val(hiddenValSplit[0] + ":" + $(this).val() + "-" + hiddenValDashSplit[1]).change();
+
+                                    }
+                                } else {
+                                    if(timeType == 1){
+                                        hiddenField.val("00:00-00:" + $(this).val()).change();
+                                    }else{
+                                        hiddenField.val("00:" + $(this).val() + "-00:00").change();
+                                    }
+                                }
+                            });
+                        });
+                    </script>
+            <?php endforeach; ?>
+
+        </fieldset>
+    </div>
+</div>

@@ -1,0 +1,7 @@
+
+type StoreConfig {
+    
+    whatsapp_chat_general_enable  : String  @doc(description: "Query by whatsapp_chat_general_enable.") 
+    whatsapp_chat_general_effect  : String  @doc(description: "Query by whatsapp_chat_general_effect.") 
+    whatsapp_chat_general_if_single  : String  @doc(description: "Query by whatsapp_chat_general_if_single.") 
+}

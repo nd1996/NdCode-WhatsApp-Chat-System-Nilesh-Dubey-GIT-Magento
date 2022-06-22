@@ -1,0 +1,7 @@
+<?xml version="1.0" ?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+	<menu>
+		<add id="NdCode::top_level" title="NdCode" module="NdCode_WhatsAppChatSystem" sortOrder="9999" resource="Magento_Backend::content"/>
+		<add id="NdCode_WhatsAppChatSystem::ndcode_whatsappchatsystem_whatsapp_user" title="Whatsapp User" module="NdCode_WhatsAppChatSystem" sortOrder="9999" resource="Magento_Backend::content" parent="NdCode::top_level" action="ndcode_whatsappchatsystem/whatsappuser/index"/>
+	</menu>
+</config>

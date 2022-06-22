@@ -1,0 +1,26 @@
+<?xml version="1.0" ?>
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+	<table name="ndcode_whatsappchatsystem_whatsapp_user" resource="default" engine="innodb" comment="ndcode_whatsappchatsystem_whatsapp_user Table">
+		<column xsi:type="int" name="whatsapp_user_id" padding="10" unsigned="true" nullable="false" identity="true" comment="Entity Id"/>
+		<constraint xsi:type="primary" referenceId="PRIMARY">
+			<column name="whatsapp_user_id"/>
+		</constraint>
+		<column name="enable" nullable="true" xsi:type="boolean" comment="enable"/>
+		<column name="name" nullable="true" xsi:type="varchar" comment="name" length="255"/>
+		<column name="role" nullable="true" xsi:type="varchar" comment="role" length="255"/>
+		<column name="whatsapp_number" nullable="true" xsi:type="varchar" comment="whatsapp_number" length="255"/>
+		<column name="description" nullable="true" xsi:type="text" comment="description"/>
+        <column name="avatar" nullable="true" xsi:type="text" comment="avatar"/>
+		<column name="availability_sunday" nullable="true" xsi:type="varchar" comment="availability_sunday" length="255"/>
+		<column name="availability_monday" nullable="true" xsi:type="varchar" comment="availability_monday" length="255"/>
+		<column name="availability_tuesday" nullable="true" xsi:type="varchar" comment="availability_tuesday" length="255"/>
+		<column name="availability_wednesday" nullable="true" xsi:type="varchar" comment="availability_wednesday" length="255"/>
+		<column name="availability_thursday" nullable="true" xsi:type="varchar" comment="availability_thursday" length="255"/>
+		<column name="availability_friday" nullable="true" xsi:type="varchar" comment="availability_friday" length="255"/>
+		<column name="availability_saturday" nullable="true" xsi:type="varchar" comment="availability_saturday" length="255"/>
+		<column name="created_at" nullable="true" xsi:type="timestamp" comment="created_at" default="CURRENT_TIMESTAMP"/>
+		<column name="modified_at" nullable="true" xsi:type="timestamp" comment="modified_at" default="CURRENT_TIMESTAMP" on_update="true"/>
+		<column name="created_by" nullable="true" xsi:type="varchar" comment="created_by" length="255"/>
+		<column name="last_modified_by" nullable="true" xsi:type="varchar" comment="last_modified_by" length="255"/>
+	</table>
+</schema>

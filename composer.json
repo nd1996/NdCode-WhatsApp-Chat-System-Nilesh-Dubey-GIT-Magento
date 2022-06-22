@@ -1,0 +1,22 @@
+{
+    "name": "ndcode/module-whatsappchatsystem",
+    "description": "Easy to use and use on you own risk",
+    "type": "magento2-module",
+    "license": "GPL-3.0",
+    "authors": [
+        {
+            "name": "Nilesh Dubey",
+            "email": "nileshdubey22a1996@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {},
+    "autoload": {
+        "files": [
+            "registration.php"
+        ],
+        "psr-4": {
+            "NdCode\\WhatsAppChatSystem\\": ""
+        }
+    }
+}

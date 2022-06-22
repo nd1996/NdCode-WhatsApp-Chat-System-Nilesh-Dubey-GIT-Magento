@@ -1,0 +1,145 @@
+<?php
+/**
+ * @var $block \NdCode\WhatsAppChatSystem\Block\WhatsAppChatData
+ *
+ * wcs_fixed_left for display icon on left side
+ */
+?>
+<?php
+$randId = "whats_app_" . rand();
+$whatsAppUserArray = $block->getActiveUser();
+$theEffect = $block->getEffect() ?: 1;
+if (count($whatsAppUserArray) > 1): ?>
+    <div class="whatsapp_chat_support wcs_fixed_right wcs-effect-<?php echo $theEffect; ?>" id="<?php echo $randId ?>">
+        <div class="wcs_button_label">
+            Questions? Let's Chat
+        </div>
+        <div class="wcs_button wcs_button_circle">
+            <span class="fa fa-whatsapp"></span>
+        </div>
+        <div class="wcs_popup">
+            <div class="wcs_popup_close">
+                <span class="fa fa-close"></span>
+            </div>
+            <div class="wcs_popup_header">
+                <strong>Need Help? Chat with us</strong>
+                <br>
+                <div class="wcs_popup_header_description">Click one of our representatives below</div>
+            </div>
+            <div class="wcs_popup_person_container">
+                <?php foreach ($whatsAppUserArray as $getActiveUser):
+                    $availableArray = $block->getAvailabilityArray($getActiveUser);
+                    /*$availableArray = [
+                        "sunday" => $getActiveUser['availability_sunday'],
+                        "monday" => $getActiveUser['availability_monday'],
+                        "tuesday" => $getActiveUser['availability_tuesday'],
+                        "wednesday" => $getActiveUser['availability_wednesday'],
+                        "thursday" => $getActiveUser['availability_thursday'],
+                        "friday" => $getActiveUser['availability_friday'],
+                        "saturday" => $getActiveUser['availability_saturday']
+                    ];*/
+                    ?>
+                    <div class="wcs_popup_person" data-number="<?php echo /* noEscape */
+                    $getActiveUser['whatsapp_number'] ?>"
+                         data-availability='<?php echo $block->getAvailabilityJsonEncode($availableArray); ?>'>
+                        <div class="wcs_popup_person_img">
+                            <?php if (isset($getActiveUser['avatar']) && !empty($getActiveUser['avatar'])): ?>
+                                <img src="<?php echo @$block->getProperImageUrl($getActiveUser['avatar']) ?>"
+                                     alt="<?php echo __("%1 Alt Image", $getActiveUser['name']) ?>">
+                            <?php else: ?>
+                                <span class="fa fa-whatsapp"></span>
+                            <?php endif; ?>
+                        </div>
+                        <div class="wcs_popup_person_content">
+                            <div class="wcs_popup_person_name"><?php echo __($getActiveUser['name']); ?></div>
+                            <div class="wcs_popup_person_description"><?php echo __($getActiveUser['role']); ?></div>
+                            <div class="wcs_popup_person_status"><?php echo __("I'm Online"); ?></div>
+                        </div>
+                    </div>
+                <?php endforeach; ?>
+            </div>
+        </div>
+    </div>
+<?php else:
+    $getActiveUser = $whatsAppUserArray[0];
+//    $availableArray = [
+//        "sunday" => $getActiveUser['availability_sunday'],
+//        "monday" => $getActiveUser['availability_monday'],
+//        "tuesday" => $getActiveUser['availability_tuesday'],
+//        "wednesday" => $getActiveUser['availability_wednesday'],
+//        "thursday" => $getActiveUser['availability_thursday'],
+//        "friday" => $getActiveUser['availability_friday'],
+//        "saturday" => $getActiveUser['availability_saturday']
+//    ];
+    $availableArray = $block->getAvailabilityArray($getActiveUser);
+    $isButton = $block->isButton();
+    if (!!$isButton): ?>
+        <div class="whatsapp_chat_support wcs_fixed_right" id="<?php echo $randId ?>">
+            <div class="wcs_button wcs_button_person" data-number="<?php echo /* noEscape */
+            $getActiveUser['whatsapp_number'] ?>"
+                 data-availability='<?php echo $block->getAvailabilityJsonEncode($availableArray); ?>'>
+                <div class="wcs_button_person_img">
+                    <?php if (isset($getActiveUser['avatar']) && !empty($getActiveUser['avatar'])): ?>
+                        <img src="<?php echo @$block->getProperImageUrl($getActiveUser['avatar']) ?>"
+                             alt="<?php echo __("%1 Alt Image", $getActiveUser['name']) ?>">
+                    <?php else: ?>
+                        <span class="fa fa-whatsapp"></span>
+                    <?php endif; ?>
+                </div>
+                <div class="wcs_button_person_content">
+                    <div class="wcs_button_person_name"><?php echo __($getActiveUser['name']); ?>
+                        &nbsp;/&nbsp; <?php echo __($getActiveUser['role']); ?></div>
+                    <div class="wcs_button_person_description"><?= __("Need help? Chat via whatsApp") ?></div>
+                    <div class="wcs_button_person_status"><?= __("I'm Online") ?></div>
+                </div>
+
+            </div>
+        </div>
+    <?php else: ?>
+        <div class="whatsapp_chat_support wcs_fixed_right wcs-effect-<?php echo $theEffect; ?>"
+             id="<?php echo $randId; ?>">
+            <div class="wcs_button_label">
+                <?= __("Questions? Let's Chat") ?>
+            </div>
+            <div class="wcs_button wcs_button_circle">
+                <span class="fa fa-whatsapp"></span>
+            </div>
+
+            <div class="wcs_popup">
+                <div class="wcs_popup_close">
+                    <span class="fa fa-close"></span>
+                </div>
+                <div class="wcs_popup_header">
+                    <span class="fa fa-whatsapp"></span>
+                    <strong><?= __("Customer Support") ?></strong>
+
+                    <div class="wcs_popup_header_description"><?= __("Need Help? Chat with us on Whatsapp"); ?></div>
+                </div>
+                <div class="wcs_popup_input" data-number="<?php echo /* noEscape */
+                $getActiveUser['whatsapp_number'] ?>">
+                    <label for="text_ask_me_anything"><?= __("Ask anything!") ?></label>
+                    <input id="text_ask_me_anything" type="text" placeholder="<?= __("Ask anything!") ?>"/>
+                    <i class="fa fa-play"></i>
+                </div>
+                <div class="wcs_popup_avatar">
+                    <?php if (isset($getActiveUser['avatar']) && !empty($getActiveUser['avatar'])): ?>
+                        <img src="<?php echo @$block->getProperImageUrl($getActiveUser['avatar']) ?>"
+                             alt="<?php echo __("%1 Alt Image", $getActiveUser['name']) ?>">
+                    <?php else: ?>
+                        <span class="fa fa-whatsapp"></span>
+                    <?php endif; ?>
+                </div>
+            </div>
+        </div>
+    <?php endif; ?>
+<?php endif; ?>
+
+<script>
+    require(['jquery', "moment_js", "moment_js_timezone", "whatsapp_chat_support"], function ($) {
+        $(window).on('load', function () {
+            $('#<?php echo $randId; ?>').whatsappChatSupport({
+                timezone: "<?php echo $block->getStoreTimeZone(); ?>"
+            });
+        });
+    });
+</script>

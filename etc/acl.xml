@@ -1,0 +1,22 @@
+<?xml version="1.0" ?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Acl/etc/acl.xsd">
+	<acl>
+		<resources>
+			<resource id="Magento_Backend::admin">
+				<resource id="NdCode_WhatsAppChatSystem::Whatsapp_User" title="Whatsapp_User" sortOrder="10">
+					<resource id="NdCode_WhatsAppChatSystem::Whatsapp_User_save" title="Save Whatsapp_User" sortOrder="10"/>
+					<resource id="NdCode_WhatsAppChatSystem::Whatsapp_User_delete" title="Delete Whatsapp_User" sortOrder="20"/>
+					<resource id="NdCode_WhatsAppChatSystem::Whatsapp_User_update" title="Update Whatsapp_User" sortOrder="30"/>
+					<resource id="NdCode_WhatsAppChatSystem::Whatsapp_User_view" title="View Whatsapp_User" sortOrder="40"/>
+				</resource>
+				<resource id="Magento_Backend::stores">
+					<resource id="Magento_Backend::stores_settings">
+						<resource id="Magento_Config::config">
+							<resource id="NdCode_WhatsAppChatSystem::config_ndcode_whatsappchatsystem" title="whatsapp_chat"/>
+						</resource>
+					</resource>
+				</resource>
+			</resource>
+		</resources>
+	</acl>
+</config>

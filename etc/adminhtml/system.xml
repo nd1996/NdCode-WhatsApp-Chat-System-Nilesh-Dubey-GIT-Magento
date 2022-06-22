@@ -1,0 +1,31 @@
+<?xml version="1.0" ?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+	<system>
+		<tab id="nd_code" translate="label" sortOrder="999">
+			<label>ND Code</label>
+		</tab>
+		<section id="whatsapp_chat" sortOrder="10" showInWebsite="1" showInStore="1" showInDefault="1" translate="label">
+			<label>Whatsapp Chat</label>
+			<tab>nd_code</tab>
+			<resource>NdCode_WhatsAppChatSystem::config_ndcode_whatsappchatsystem</resource>
+			<group id="general" sortOrder="10" showInWebsite="1" showInStore="1" showInDefault="1" translate="label">
+				<label>General</label>
+				<field id="enable" type="select" sortOrder="10" showInWebsite="1" showInStore="1" showInDefault="1" translate="label">
+					<label>Enable</label>
+					<comment/>
+					<source_model>Magento\Config\Model\Config\Source\Enabledisable</source_model>
+				</field>
+				<field id="effect" type="select" sortOrder="10" showInWebsite="1" showInStore="1" showInDefault="1" translate="label">
+					<label>Effect for Pop Up</label>
+					<comment/>
+					<source_model>NdCode\WhatsAppChatSystem\Model\Config\Source\Effect</source_model>
+				</field>
+				<field id="if_single" type="select" sortOrder="10" showInWebsite="1" showInStore="1" showInDefault="1" translate="label">
+					<label>If Single</label>
+                    <comment><![CDATA["If only one whatsapp enable"]]></comment>
+					<source_model>NdCode\WhatsAppChatSystem\Model\Config\Source\IfSingle</source_model>
+				</field>
+			</group>
+		</section>
+	</system>
+</config>

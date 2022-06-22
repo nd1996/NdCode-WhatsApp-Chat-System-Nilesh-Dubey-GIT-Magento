@@ -1,0 +1,33 @@
+<?xml version="1.0" ?>
+<routes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Webapi:etc/webapi.xsd">
+	<route url="/V1/ndcode-whatsappchatsystem/whatsapp_user" method="POST">
+		<service class="NdCode\WhatsAppChatSystem\Api\WhatsappUserRepositoryInterface" method="save"/>
+		<resources>
+			<resource ref="NdCode_WhatsAppChatSystem::Whatsapp_User_save"/>
+		</resources>
+	</route>
+	<route url="/V1/ndcode-whatsappchatsystem/whatsapp_user/search" method="GET">
+		<service class="NdCode\WhatsAppChatSystem\Api\WhatsappUserRepositoryInterface" method="getList"/>
+		<resources>
+			<resource ref="NdCode_WhatsAppChatSystem::Whatsapp_User_view"/>
+		</resources>
+	</route>
+	<route url="/V1/ndcode-whatsappchatsystem/whatsapp_user/:whatsappUserId" method="GET">
+		<service class="NdCode\WhatsAppChatSystem\Api\WhatsappUserRepositoryInterface" method="get"/>
+		<resources>
+			<resource ref="NdCode_WhatsAppChatSystem::Whatsapp_User_view"/>
+		</resources>
+	</route>
+	<route url="/V1/ndcode-whatsappchatsystem/whatsapp_user/:whatsappUserId" method="PUT">
+		<service class="NdCode\WhatsAppChatSystem\Api\WhatsappUserRepositoryInterface" method="save"/>
+		<resources>
+			<resource ref="NdCode_WhatsAppChatSystem::Whatsapp_User_update"/>
+		</resources>
+	</route>
+	<route url="/V1/ndcode-whatsappchatsystem/whatsapp_user/:whatsappUserId" method="DELETE">
+		<service class="NdCode\WhatsAppChatSystem\Api\WhatsappUserRepositoryInterface" method="deleteById"/>
+		<resources>
+			<resource ref="NdCode_WhatsAppChatSystem::Whatsapp_User_delete"/>
+		</resources>
+	</route>
+</routes>

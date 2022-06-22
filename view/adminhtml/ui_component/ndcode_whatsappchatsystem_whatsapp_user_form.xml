@@ -1,0 +1,295 @@
+<?xml version="1.0" ?>
+<form xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+	<argument name="data" xsi:type="array">
+		<item name="js_config" xsi:type="array">
+			<item name="provider" xsi:type="string">ndcode_whatsappchatsystem_whatsapp_user_form.whatsapp_user_form_data_source</item>
+		</item>
+		<item name="label" xsi:type="string" translate="true">WhatsApp User Information</item>
+		<item name="template" xsi:type="string">templates/form/collapsible</item>
+	</argument>
+	<settings>
+		<buttons>
+			<button name="back" class="NdCode\WhatsAppChatSystem\Block\Adminhtml\Whatsapp\User\Edit\BackButton"/>
+			<button name="delete" class="NdCode\WhatsAppChatSystem\Block\Adminhtml\Whatsapp\User\Edit\DeleteButton"/>
+			<button name="save" class="NdCode\WhatsAppChatSystem\Block\Adminhtml\Whatsapp\User\Edit\SaveButton"/>
+			<button name="save_and_continue" class="NdCode\WhatsAppChatSystem\Block\Adminhtml\Whatsapp\User\Edit\SaveAndContinueButton"/>
+		</buttons>
+		<namespace>ndcode_whatsappchatsystem_whatsapp_user_form</namespace>
+		<dataScope>data</dataScope>
+		<deps>
+			<dep>ndcode_whatsappchatsystem_whatsapp_user_form.whatsapp_user_form_data_source</dep>
+		</deps>
+	</settings>
+	<dataSource name="whatsapp_user_form_data_source">
+		<argument name="data" xsi:type="array">
+			<item name="js_config" xsi:type="array">
+				<item name="component" xsi:type="string">Magento_Ui/js/form/provider</item>
+			</item>
+		</argument>
+		<settings>
+			<submitUrl path="*/*/save"/>
+		</settings>
+		<dataProvider name="whatsapp_user_form_data_source" class="NdCode\WhatsAppChatSystem\Model\WhatsappUser\DataProvider">
+			<settings>
+				<requestFieldName>whatsapp_user_id</requestFieldName>
+				<primaryFieldName>whatsapp_user_id</primaryFieldName>
+			</settings>
+		</dataProvider>
+	</dataSource>
+	<fieldset name="general">
+		<settings>
+			<label>General</label>
+		</settings>
+		<field name="enable"  component="Magento_Ui/js/form/element/single-checkbox-toggle-notice" formElement="checkbox" sortOrder="10">
+			<argument name="data" xsi:type="array">
+				<item name="config" xsi:type="array">
+                    <item name="default" xsi:type="number">0</item>
+					<item name="source" xsi:type="string">Whatsapp_User</item>
+				</item>
+			</argument>
+			<settings>
+				<dataType>text</dataType>
+				<label translate="true">Enable/Disable</label>
+				<dataScope>enable</dataScope>
+				<validation>
+					<rule name="required-entry" xsi:type="boolean">true</rule>
+				</validation>
+			</settings>
+            <formElements>
+                 <checkbox>
+                    <settings>
+                        <valueMap>
+                            <map name="false" xsi:type="number">0</map>
+                            <map name="true" xsi:type="number">1</map>
+                        </valueMap>
+                        <prefer>toggle</prefer>
+                    </settings>
+                </checkbox>
+            </formElements>
+		</field>
+		<field name="name" formElement="input" sortOrder="20">
+			<argument name="data" xsi:type="array">
+				<item name="config" xsi:type="array">
+					<item name="source" xsi:type="string">Whatsapp_User</item>
+				</item>
+			</argument>
+			<settings>
+				<dataType>text</dataType>
+				<label translate="true">Name</label>
+				<dataScope>name</dataScope>
+				<validation>
+					<rule name="required-entry" xsi:type="boolean">true</rule>
+				</validation>
+			</settings>
+		</field>
+        		<field name="role" formElement="input" sortOrder="30">
+			<argument name="data" xsi:type="array">
+				<item name="config" xsi:type="array">
+					<item name="source" xsi:type="string">Whatsapp_User</item>
+				</item>
+			</argument>
+			<settings>
+				<dataType>text</dataType>
+				<label translate="true">Role</label>
+				<dataScope>role</dataScope>
+				<validation>
+					<rule name="required-entry" xsi:type="boolean">true</rule>
+				</validation>
+			</settings>
+		</field>
+
+        <field name="whatsapp_number" formElement="input" sortOrder="40">
+			<argument name="data" xsi:type="array">
+				<item name="config" xsi:type="array">
+					<item name="source" xsi:type="string">Whatsapp_User</item>
+				</item>
+			</argument>
+			<settings>
+				<dataType>text</dataType>
+				<label translate="true">WhatsApp No.</label>
+				<dataScope>whatsapp_number</dataScope>
+				<validation>
+					<rule name="required-entry" xsi:type="boolean">true</rule>
+				</validation>
+			</settings>
+		</field>
+
+		<field name="description" formElement="textarea" sortOrder="50">
+			<argument name="data" xsi:type="array">
+				<item name="config" xsi:type="array">
+					<item name="source" xsi:type="string">Whatsapp_User</item>
+				</item>
+			</argument>
+			<settings>
+				<dataType>text</dataType>
+				<label translate="true">Description</label>
+				<dataScope>description</dataScope>
+				<validation>
+					<rule name="required-entry" xsi:type="boolean">false</rule>
+				</validation>
+			</settings>
+		</field>
+        <field name="avatar" formElement="imageUploader" sortOrder="60">
+			<argument name="data" xsi:type="array">
+				<item name="config" xsi:type="array">
+					<item name="source" xsi:type="string">Whatsapp_User</item>
+				</item>
+			</argument>
+			<settings>
+				<dataType>string</dataType>
+				<label translate="true">Avatar (Image)</label>
+                <visible>true</visible>
+				<dataScope>avatar</dataScope>
+                <required>false</required>
+                <notice translate="true">Allowed file types: jpeg, gif, png.</notice>
+                <componentType>imageUploader</componentType>
+                <elementTmpl>ui/form/element/uploader/image</elementTmpl>
+			</settings>
+            <formElements>
+                <imageUploader>
+                    <settings>
+                        <required>false</required>
+                        <uploaderConfig>
+                            <param xsi:type="url" name="url" path="catalog/category_image/upload"/>
+                        </uploaderConfig>
+                        <previewTmpl>Magento_Catalog/image-preview</previewTmpl>
+                        <initialMediaGalleryOpenSubpath>ndcode/whatsappchat</initialMediaGalleryOpenSubpath>
+                        <openDialogTitle>Media Gallery</openDialogTitle>
+                        <allowedExtensions>jpg jpeg gif png</allowedExtensions>
+                        <maxFileSize>4194304</maxFileSize>
+                    </settings>
+                </imageUploader>
+            </formElements>
+		</field>
+
+<!--    </fieldset>-->
+
+<!--    <fieldset name="availability">-->
+<!--		<settings>-->
+<!--			<label>Availability</label>-->
+<!--		</settings>-->
+
+		<field name="availability_sunday" formElement="hidden" sortOrder="65">
+			<argument name="data" xsi:type="array">
+				<item name="config" xsi:type="array">
+					<item name="source" xsi:type="string">Whatsapp_User</item>
+					<item name="default" xsi:type="string">00:00-00:00</item>
+				</item>
+			</argument>
+			<settings>
+				<dataType>text</dataType>
+                <!-- <disabled>true</disabled>-->
+				<label translate="true">Sunday</label>
+				<dataScope>availability_sunday</dataScope>
+				<validation>
+					<rule name="required-entry" xsi:type="boolean">true</rule>
+				</validation>
+			</settings>
+		</field>
+		<field name="availability_monday" formElement="hidden" sortOrder="70">
+			<argument name="data" xsi:type="array">
+				<item name="config" xsi:type="array">
+					<item name="source" xsi:type="string">Whatsapp_User</item>
+                    <item name="default" xsi:type="string">00:00-00:00</item>
+				</item>
+			</argument>
+			<settings>
+				<dataType>text</dataType>
+                <!-- <disabled>true</disabled>-->
+				<label translate="true">Monday</label>
+				<dataScope>availability_monday</dataScope>
+				<validation>
+					<rule name="required-entry" xsi:type="boolean">true</rule>
+				</validation>
+			</settings>
+		</field>
+		<field name="availability_tuesday" formElement="hidden" sortOrder="80">
+			<argument name="data" xsi:type="array">
+				<item name="config" xsi:type="array">
+					<item name="source" xsi:type="string">Whatsapp_User</item>
+                    <item name="default" xsi:type="string">00:00-00:00</item>
+				</item>
+			</argument>
+			<settings>
+				<dataType>text</dataType>
+                <!-- <disabled>true</disabled>-->
+				<label translate="true">Tuesday</label>
+				<dataScope>availability_tuesday</dataScope>
+				<validation>
+					<rule name="required-entry" xsi:type="boolean">true</rule>
+				</validation>
+			</settings>
+		</field>
+		<field name="availability_wednesday" formElement="hidden" sortOrder="90">
+			<argument name="data" xsi:type="array">
+				<item name="config" xsi:type="array">
+					<item name="source" xsi:type="string">Whatsapp_User</item>
+                    <item name="default" xsi:type="string">00:00-00:00</item>
+				</item>
+			</argument>
+			<settings>
+				<dataType>text</dataType>
+                <!-- <disabled>true</disabled>-->
+				<label translate="true">Wednesday</label>
+				<dataScope>availability_wednesday</dataScope>
+				<validation>
+					<rule name="required-entry" xsi:type="boolean">true</rule>
+				</validation>
+			</settings>
+		</field>
+		<field name="availability_thursday" formElement="hidden" sortOrder="100">
+			<argument name="data" xsi:type="array">
+				<item name="config" xsi:type="array">
+					<item name="source" xsi:type="string">Whatsapp_User</item>
+                    <item name="default" xsi:type="string">00:00-00:00</item>
+				</item>
+			</argument>
+			<settings>
+				<dataType>text</dataType>
+                <!-- <disabled>true</disabled>-->
+				<label translate="true">Thursday</label>
+				<dataScope>availability_thursday</dataScope>
+				<validation>
+					<rule name="required-entry" xsi:type="boolean">true</rule>
+				</validation>
+			</settings>
+		</field>
+		<field name="availability_friday" formElement="hidden" sortOrder="110">
+			<argument name="data" xsi:type="array">
+				<item name="config" xsi:type="array">
+					<item name="source" xsi:type="string">Whatsapp_User</item>
+                    <item name="default" xsi:type="string">00:00-00:00</item>
+				</item>
+			</argument>
+			<settings>
+				<dataType>text</dataType>
+                <!-- <disabled>true</disabled>-->
+				<label translate="true">Friday</label>
+				<dataScope>availability_friday</dataScope>
+				<validation>
+					<rule name="required-entry" xsi:type="boolean">true</rule>
+				</validation>
+			</settings>
+		</field>
+		<field name="availability_saturday" formElement="hidden" sortOrder="120">
+			<argument name="data" xsi:type="array">
+				<item name="config" xsi:type="array">
+					<item name="source" xsi:type="string">Whatsapp_User</item>
+                    <item name="default" xsi:type="string">00:00-00:00</item>
+				</item>
+			</argument>
+			<settings>
+				<dataType>text</dataType>
+                <!-- <disabled>true</disabled>-->
+				<label translate="true">Saturday</label>
+				<dataScope>availability_saturday</dataScope>
+				<validation>
+					<rule name="required-entry" xsi:type="boolean">true</rule>
+				</validation>
+			</settings>
+		</field>
+        <htmlContent name="wishlist_content">
+            <block class="NdCode\WhatsAppChatSystem\Block\Adminhtml\Whatsapp\UiForm\CustomFields" name="addition_form_field_js" />
+        </htmlContent>
+	</fieldset>
+</form>
