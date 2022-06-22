@@ -12,6 +12,13 @@
 ## Main Functionalities
 Easy to use and use on you own risk
 
+- Single and multiple accounts
+- Define time availability per user
+- Let your customers see when you are offline
+- Enable/Disable User from Admin
+- Store TimeZone is use for Active user(s)
+- Few Effect added for popup
+
 ## Installation
 \* = in production please use the `--keep-generated` option
 
@@ -44,12 +51,7 @@ Easy to use and use on you own risk
 
 ## Change Log
 - 2022-06-22
-  - [feature] Single and multiple accounts
-  - [feature] Define time availability per user
-  - [feature] Let your customers see when you are offline
-  - [feature] Enable/Disable User from Admin
-  - [feature] Store TimeZone is use for Active user(s)
-  - [feature] Few Effect added for popup
+  - compatible with 2.4.4
 
 
 ## Future Feature to add
